@@ -32,6 +32,7 @@ body {
 .double-space {
     grid-column: span 2;
 }
+
 .output {
     grid-column-start: 1;
     grid-column-end: 5;
