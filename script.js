@@ -9,13 +9,16 @@ class Calculator {
         this.previousOperand = '';
         this.currentOperand = '';
         this.operation = undefined;
+        this.nonApprendable = false;
     }
 
     delete() {
-        this.currentOperand = this.currentOperand.toString().slice(0,-1)
+        if(this.nonApprendable == true) return;
+        this.currentOperand = this.currentOperand.toString().slice(0,-1);
     }
 
     appendNumber(number) {
+        if(this.nonApprendable == true) return
         if(number === '.' && this.currentOperand.includes('.')) return;
         this.currentOperand = this.currentOperand.toString() + number.toString();
     }
@@ -23,11 +26,12 @@ class Calculator {
     chooseOperation(operation){
         if(this.currentOperand === '') return;
         if(this.previousOperand !== '') {
-            this.compute()
+            this.compute();
         }
         this.operation = operation;
         this.previousOperand = this.currentOperand;
         this.currentOperand = '';
+        this.nonApprendable = false;
     }
 
 
@@ -55,6 +59,7 @@ class Calculator {
         this.currentOperand = computation;
         this.operation = undefined;
         this.previousOperand = '';
+        this.nonApprendable = true;
     } 
 
     getDisplayNumber(number) {
